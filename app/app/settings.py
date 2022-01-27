@@ -6,12 +6,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
 env = environ.Env()
-env_file = os.path.join(BASE_DIR, ".env")
+env_file = os.path.join(BASE_DIR.parent, ".env")
 
 if os.path.isfile(env_file):
     env.read_env(env_file)
 else:
-    env.read_env(os.path.join(BASE_DIR, '.env.dist'))
+    env.read_env(os.path.join(BASE_DIR.parent, '.env.dist'))
 
 SECRET_KEY = env('SECRET_KEY')
 
@@ -41,7 +41,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'cearncrm_app.urls'
+ROOT_URLCONF = 'app.urls'
 
 TEMPLATES = [
     {
@@ -59,7 +59,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'cearncrm_app.wsgi.application'
+WSGI_APPLICATION = 'app.wsgi.application'
 
 
 # Database
